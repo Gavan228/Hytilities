@@ -41,10 +41,8 @@ jobs:
         distribution: zulu
         cache: gradle
     - name: Build with Gradle
-      run: chmod +x ./gradlew && ./gradlew setupCIWorkspace build --no-daemon
+      run: chmod +x ./gradlew && ./gradlew setupDecompWorkspace && ./gradlew build --no-daemon
     - uses: actions/upload-artifact@v2
-      with:
-        path: build/libs/*-dep.jar
     - name: Update discord notification
       if: ${{ env.WEBHOOK_URL && success() }}
       run: |
